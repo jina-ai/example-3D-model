@@ -32,7 +32,7 @@ def get_docs(num_docs):
 @click.option('--task', '-t', type=click.Choice(['index', 'query', 'query_restful']))
 def main(task):
     config()
-    num_docs = 1000
+    num_docs = 100
     flow = Flow.load_config('flow.yml')
 
     if task == 'index':

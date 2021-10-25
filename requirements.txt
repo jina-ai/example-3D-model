@@ -1,0 +1,7 @@
+jina
+kubernetes
+trimesh
+inflect
+tensorflow
+pyenchant
+Pillow

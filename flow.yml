@@ -6,15 +6,11 @@ with:
   port_expose: $JINA_PORT
 executors:
   - name: crafter
-    uses: GlbCrafter
+    uses: GlbCrafter  # Replace with jinahub+docker://GlbCrafter once memory leak is fixed
     py_modules:
       - executors/glb_crafter/glb_crafter.py
   - name: encoder
-    uses: PNEncoder
-    uses_with:
-      ckpt_path: 'executors/pn_encoder/ckpt/ckpt_True'
-    py_modules:
-      - executors/pn_encoder/pn_encoder.py
+    uses: jinahub+docker://PNEncoder
     needs: crafter
   - name: indexer
     uses: jinahub://SimpleIndexer/v0.4

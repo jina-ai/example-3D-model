@@ -30,14 +30,24 @@ def get_docs(num_docs):
 
 @click.command()
 @click.option('--task', '-t', type=click.Choice(['index', 'query', 'query_restful']))
-def main(task):
+@click.option('--num_data', '-n', type=int, default=100)
+def main(task, num_data):
     config()
-    num_docs = 100
     flow = Flow.load_config('flow.yml')
 
     if task == 'index':
         with flow:
-            flow.post(on='/index', inputs=get_docs(num_docs))
+            flow.post(on='/index', inputs=get_docs(num_data))
+    elif task == 'query':
+        with flow:
+            results = flow.post(on='/search', return_results=True, inputs=Document(
+                uri='toy_data/laptop_laptop_computer_17.glb'))
+            for index, match in enumerate(results[0].docs[0].matches):
+                print(f'Match {index:02d}: {match.uri}')
+
+    elif task == 'query_restful':
+        with flow:
+            flow.block()
 
 
 if __name__ == '__main__':

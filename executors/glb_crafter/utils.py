@@ -1,6 +1,6 @@
 import re
 import tempfile
-
+import numpy as np
 import inflect
 import trimesh
 
@@ -54,10 +54,10 @@ def get_tags(
 
 def get_mesh(content: bytes):
     with tempfile.NamedTemporaryFile(
-            suffix='.glb', delete=False
+            suffix='.glb', delete=True
     ) as glb_file:
         glb_file.write(content)
         glb_file.flush()
         mesh = trimesh.load_mesh(glb_file.name)
-    mesh = mesh.deduplicated()
+    #mesh = mesh.deduplicated()
     return mesh

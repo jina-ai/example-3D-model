@@ -3,6 +3,8 @@ from typing import Optional
 from jina import Document, DocumentArray, Executor, requests
 from jina.logging.logger import JinaLogger
 import trimesh
+import copy
+import numpy as np
 
 from executors.glb_crafter.utils import get_tags, get_mesh
 

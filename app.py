@@ -36,7 +36,7 @@ def get_docs(num_docs):
 def main(task, num_data):
     config()
     flow = Flow.load_config('flow.yml')
-
+    flow.plot('.github/flow.png')
     if task == 'index':
         with flow:
             flow.post(on='/index', inputs=get_docs(num_data))

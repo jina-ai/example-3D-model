@@ -6,7 +6,7 @@ with:
   port_expose: $JINA_PORT
 executors:
   - name: crafter
-    uses: jinahub+docker://GlbCrafter/latest
+    uses: jinahub+docker://GlbCrafter/v0.1
     volumes: $DATA_MOUNT
   - name: encoder
     uses: jinahub+docker://PNEncoder

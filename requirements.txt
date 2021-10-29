@@ -5,3 +5,4 @@ inflect
 tensorflow
 pyenchant
 Pillow
+matplotlib

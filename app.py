@@ -5,6 +5,7 @@ import click
 from jina import Flow, Document, DocumentArray
 from jina.logging.logger import JinaLogger
 import requests
+from visualizer import GlbVisualizer
 
 logger = JinaLogger('3d-showcase')
 
@@ -33,7 +34,8 @@ def get_docs(num_docs):
 @click.command()
 @click.option('--task', '-t', type=click.Choice(['index', 'query', 'query_restful']))
 @click.option('--num_data', '-n', type=int, default=1000)
-def main(task, num_data):
+@click.option('--visualize', '-v', type=bool, default=False)
+def main(task, num_data, visualize):
     config()
     flow = Flow.load_config('flow.yml')
     flow.plot('.github/flow.png')
@@ -46,6 +48,9 @@ def main(task, num_data):
             results = flow.post(on='/search', return_results=True, inputs=input_doc)
             for index, match in enumerate(results[0].docs[0].matches):
                 print(f'Match {index:02d}: {match.uri}')
+        if visualize:
+            vis = GlbVisualizer(input_doc, results[0].docs[0].matches)
+            vis.visualize()
 
     elif task == 'query_restful':
         with flow:

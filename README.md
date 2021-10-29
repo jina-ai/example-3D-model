@@ -69,7 +69,12 @@ After indexing, you can run a quick test query using:
 ```bash
 python app.py -t query
 ```
-This runs one query using a 3D object containing a laptop.
+This runs one query using a 3D object containing a laptop.  
+If you want to visualize the results and matches, you can use our simple visualization funcionality:
+```bash
+python app.py -t query -v True
+```
+Alternatively, you can use [online tools](https://gltf-viewer.donmccurdy.com/) to visualize in better quality.
 
 Alternatively, you can start a REST Api waiting for queries:
 ```bash
